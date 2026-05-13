@@ -91,6 +91,8 @@ export async function ensureEditorAccess(env = import.meta.env) {
 
 function renderLogin({ mode, configuredPassword, env }) {
   const isSupabase = mode === 'supabase'
+  const supabaseEditorEmail = String(env?.VITE_SUPABASE_EDITOR_EMAIL || '').trim()
+  const showSupabaseEmail = isSupabase && !supabaseEditorEmail
   document.body.classList.add('ve-auth-page')
   document.body.innerHTML = `
     <main class="ve-auth-shell">
@@ -98,10 +100,10 @@ function renderLogin({ mode, configuredPassword, env }) {
         <div>
           <p class="ve-auth-kicker">Divine CMS</p>
           <h1>Editor login</h1>
-          <p class="ve-auth-copy">${isSupabase ? 'Sign in with your CMS editor account.' : 'Enter the editor password to manage page content.'}</p>
+          <p class="ve-auth-copy">Enter the editor password to manage page content.</p>
         </div>
         ${
-          isSupabase
+          showSupabaseEmail
             ? `<label>
                 <span>Email</span>
                 <input type="email" name="email" autocomplete="username" required>
@@ -138,7 +140,7 @@ function renderLogin({ mode, configuredPassword, env }) {
     error.hidden = true
 
     if (isSupabase) {
-      const result = await signInSupabaseEditor(emailInput.value, input.value, { env })
+      const result = await signInSupabaseEditor(supabaseEditorEmail || emailInput.value, input.value, { env })
       if (result.ok) {
         window.location.reload()
         return
