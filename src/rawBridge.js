@@ -120,6 +120,7 @@ function applyVisualState(visualState = readVisualState()) {
     const element = document.querySelector(`[data-ve-id="${id}"]`)
     if (!element) return
     Object.entries(attrs).forEach(([name, value]) => {
+      if (!canApplySavedAttribute(element, name)) return
       if (value === '' && name === 'data-video-url') element.removeAttribute(name)
       else if (value) setSafeAttribute(element, name, value)
     })
@@ -168,6 +169,8 @@ function applyTextRefs(refs) {
 }
 
 function setSafeAttribute(element, name, value) {
+  if (!canApplySavedAttribute(element, name)) return
+
   if (name === 'href') {
     const safeUrl = sanitizeUrl(value)
     if (safeUrl) element.setAttribute(name, safeUrl)
@@ -206,6 +209,7 @@ function applyAttrRefs(refs) {
     const element = document.querySelectorAll(item.selector)[item.index]
     if (!element) return
     Object.entries(item.attrs || {}).forEach(([name, value]) => {
+      if (!canApplySavedAttribute(element, name)) return
       if (value === '' && name === 'data-video-url') element.removeAttribute(name)
       else if (value === '' && name === 'data-ve-image-url') element.removeAttribute(name)
       else setSafeAttribute(element, name, value)
@@ -311,6 +315,23 @@ function getVideoMount(element) {
   return element.querySelector('.video-test-thumb') || element.querySelector('.video-placeholder') || element
 }
 
+function isVideoTargetElement(element) {
+  return Boolean(element?.matches('.hero-vsl, .video-test-card'))
+}
+
+function isImagePlaceholderElement(element) {
+  return Boolean(element?.matches('.screenshot-placeholder, .tab-preview'))
+}
+
+function canApplySavedAttribute(element, name) {
+  if (name === 'data-video-url') return isVideoTargetElement(element)
+  if (name === 'data-ve-image-url') return isImagePlaceholderElement(element)
+  if (name === 'src' || name === 'alt') return element?.matches('img')
+  if (name === 'href') return element?.matches('a')
+  if (name === 'style') return element?.matches(visualEditableSelector)
+  return true
+}
+
 function applyVideoThumbnail(element, url) {
   const mount = getVideoMount(element)
   const thumbnailUrl = getVideoThumbnailUrl(url)
@@ -322,6 +343,7 @@ function applyVideoThumbnail(element, url) {
 }
 
 function renderVideoEmbed(element, url) {
+  if (!isVideoTargetElement(element)) return
   const mount = getVideoMount(element)
   const embedUrl = sanitizeUrl(toEmbedUrl(url), { allowRelative: false })
   if (!mount || !embedUrl) return
@@ -387,7 +409,7 @@ function restoreVideoPlaceholder(element) {
 }
 
 function renderVideoEmbeds() {
-  document.querySelectorAll('.hero-vsl[data-video-url], .video-test-card[data-video-url], [data-video-url]').forEach((element) => {
+  document.querySelectorAll('.hero-vsl[data-video-url], .video-test-card[data-video-url]').forEach((element) => {
     renderVideoEmbed(element, element.dataset.videoUrl)
   })
 }
