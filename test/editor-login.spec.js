@@ -146,9 +146,20 @@ test('renders a branded 404 for unknown slugs', async ({ page }) => {
 })
 
 test('exposes footer social links and final review section text in the editor', async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem('divine.supabase.auth.v1', JSON.stringify({
+      accessToken: 'test-token',
+      refreshToken: '',
+      expiresAt: Math.floor(Date.now() / 1000) + 3600,
+      user: {
+        email: 'editor@example.com',
+        app_metadata: { role: 'cms_editor' },
+      },
+    }))
+    sessionStorage.setItem('divine.editor.auth.v1', '1')
+  })
+
   await page.goto('http://127.0.0.1:5173/editor')
-  await page.getByLabel('Password').fill('change-this-password')
-  await page.getByRole('button', { name: 'Unlock editor' }).click()
   await expect(page.locator('.ve-toolbar')).toBeVisible()
 
   await expect(page.locator('.final-cta span').filter({ hasText: '4,500+ Reviews on' })).toHaveAttribute('contenteditable', 'true')
@@ -156,6 +167,7 @@ test('exposes footer social links and final review section text in the editor', 
   await page.locator('.footer-socials a svg').first().click()
   await page.getByRole('button', { name: 'Edit selected' }).click()
   await expect(page.getByLabel('Link URL')).toBeVisible()
+  await expect(page.getByLabel('Icon / SVG HTML')).toHaveCount(0)
 
   await page.getByLabel('Link URL').fill('https://x.com/divine')
   await page.getByRole('button', { name: 'Apply selected settings' }).click()

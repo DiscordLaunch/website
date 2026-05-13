@@ -121,7 +121,6 @@ const selectableSelector = [
   '.mini-play',
   '.footer-socials a',
   'img',
-  'svg',
 ].join(',')
 const stableSelectors = [
   '.header-cta',
@@ -580,15 +579,6 @@ function getSelectedVideoTarget() {
   return selectedElement.closest('.hero-vsl, .video-test-card')
 }
 
-function getSelectedIconTarget() {
-  if (!selectedElement) return null
-  if (selectedElement.matches('svg')) {
-    return selectedElement.closest('.card-icon,.step-num,.play-icon,.mini-play,.footer-socials a') || selectedElement.parentElement
-  }
-  if (selectedElement.matches('.card-icon,.step-num,.play-icon,.mini-play,.footer-socials a')) return selectedElement
-  return null
-}
-
 function getSelectedTextColorTarget() {
   if (!selectedElement) return null
   if (selectedElement.closest('.ve-toolbar,.ve-inspector')) return null
@@ -608,7 +598,6 @@ function updateInspector() {
   const imageInput = document.querySelector('[data-ve-image]')
   const altInput = document.querySelector('[data-ve-alt]')
   const videoInput = document.querySelector('[data-ve-video]')
-  const iconInput = document.querySelector('[data-ve-icon]')
   const colorInput = document.querySelector('[data-ve-color]')
   const colorHexInput = document.querySelector('[data-ve-color-hex]')
   const rotatingInput = document.querySelector('[data-ve-rotating]')
@@ -618,7 +607,6 @@ function updateInspector() {
   const imageUploadField = document.querySelector('[data-ve-image-upload-field]')
   const altField = document.querySelector('[data-ve-alt-field]')
   const videoField = document.querySelector('[data-ve-video-field]')
-  const iconField = document.querySelector('[data-ve-icon-field]')
   const colorField = document.querySelector('[data-ve-color-field]')
   const rotatingField = document.querySelector('[data-ve-rotating-field]')
   const starsField = document.querySelector('[data-ve-stars-field]')
@@ -630,7 +618,6 @@ function updateInspector() {
   const image = getSelectedImage()
   const imagePlaceholder = getSelectedImagePlaceholder()
   const video = getSelectedVideoTarget()
-  const icon = getSelectedIconTarget()
   const textColor = getSelectedTextColorTarget()
   const stars = getSelectedStarsTarget()
 
@@ -639,7 +626,6 @@ function updateInspector() {
   imageUploadField.hidden = !image && !imagePlaceholder
   altField.hidden = !image
   videoField.hidden = !video
-  iconField.hidden = !icon
   colorField.hidden = !textColor
   rotatingField.hidden = selectedElement.id !== 'rotating-word'
   starsField.hidden = !stars
@@ -648,7 +634,6 @@ function updateInspector() {
   imageInput.value = image?.getAttribute('src') || imagePlaceholder?.dataset.veImageUrl || ''
   altInput.value = image?.getAttribute('alt') || ''
   videoInput.value = video?.dataset.videoUrl || ''
-  iconInput.value = icon?.outerHTML || icon?.innerHTML || ''
   const selectedColor = textColor ? rgbToHex(getComputedStyle(textColor).color) : '#000000'
   colorInput.value = selectedColor
   colorHexInput.value = selectedColor
@@ -701,7 +686,6 @@ function applyInspector() {
   const imageValue = document.querySelector('[data-ve-image]').value.trim()
   const altValue = document.querySelector('[data-ve-alt]').value.trim()
   const videoValue = document.querySelector('[data-ve-video]').value.trim()
-  const iconValue = document.querySelector('[data-ve-icon]').value.trim()
   const colorValue = normalizeHexColor(document.querySelector('[data-ve-color-hex]').value)
     || normalizeHexColor(document.querySelector('[data-ve-color]').value)
   const rotatingValue = document.querySelector('[data-ve-rotating]').value
@@ -755,12 +739,6 @@ function applyInspector() {
       'data-video-url': videoValue,
     }
     saveAttrRef(video, { 'data-video-url': videoValue })
-  }
-
-  const icon = getSelectedIconTarget()
-  if (icon && iconValue) {
-    icon.innerHTML = iconValue
-    state.text[icon.dataset.veId || selectedElement.dataset.veId] = cleanEditableHtml(icon.matches('svg') ? icon.outerHTML : icon.innerHTML)
   }
 
   const textColor = getSelectedTextColorTarget()
@@ -1225,7 +1203,6 @@ function mountEditorUi() {
       <label data-ve-color-field hidden>Text color<span class="ve-color-controls"><input data-ve-color type="color" aria-label="Text color"><input data-ve-color-hex type="text" aria-label="Hex color" placeholder="#7c3aed" maxlength="7" spellcheck="false"></span></label>
       <label data-ve-rotating-field hidden>Rotating words<textarea data-ve-rotating rows="7" spellcheck="false"></textarea></label>
       <label data-ve-stars-field hidden>Star count<input data-ve-stars type="number" min="1" max="5" step="1"></label>
-      <label data-ve-icon-field>Icon / SVG HTML<textarea data-ve-icon rows="5" spellcheck="false" placeholder="<svg ...></svg>"></textarea></label>
       <button type="button" data-ve-apply>Apply selected settings</button>
     </aside>
   `)
