@@ -205,6 +205,56 @@ test('exposes previously skipped page copy in the editor', async ({ page }) => {
   await expect(page.locator('.step-num').first()).toHaveText('A1')
 })
 
+test('does not render legacy video attrs on the site logo', async ({ page }) => {
+  const poisonedVisualState = {
+    text: {},
+    attrs: {
+      've-0': {
+        'data-video-url': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      },
+    },
+    attrRefs: [
+      {
+        selector: '.logo',
+        index: 0,
+        attrs: {
+          'data-video-url': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        },
+      },
+    ],
+    inserts: [],
+    rotatingWords: null,
+    starRatings: [],
+    textRefs: [],
+    removals: [],
+  }
+
+  await page.addInitScript((state) => {
+    localStorage.setItem('divine.visual.page.v1', JSON.stringify(state))
+    localStorage.setItem('divine.supabase.auth.v1', JSON.stringify({
+      accessToken: 'test-token',
+      refreshToken: '',
+      expiresAt: Math.floor(Date.now() / 1000) + 3600,
+      user: {
+        email: 'editor@example.com',
+        app_metadata: { role: 'cms_editor' },
+      },
+    }))
+    sessionStorage.setItem('divine.editor.auth.v1', '1')
+  }, poisonedVisualState)
+
+  await page.goto('http://127.0.0.1:5173/')
+  await expect(page.locator('.logo').first()).toContainText('divine')
+  await expect(page.locator('.logo').first()).not.toHaveAttribute('data-video-url', /youtube/)
+  await expect(page.locator('.logo .mini-play')).toHaveCount(0)
+
+  await page.goto('http://127.0.0.1:5173/editor')
+  await expect(page.locator('.ve-toolbar')).toBeVisible()
+  await expect(page.locator('.logo').first()).toContainText('divine')
+  await expect(page.locator('.logo').first()).not.toHaveAttribute('data-video-url', /youtube/)
+  await expect(page.locator('.logo .mini-play')).toHaveCount(0)
+})
+
 test('changes selected text color from the editor inspector', async ({ page }) => {
   await page.goto('http://127.0.0.1:5173/editor')
   await page.getByLabel('Password').fill('change-this-password')
