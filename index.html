@@ -1,0 +1,3540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divine &mdash; The #1 Community for Resellers</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #faf9fc;
+  --bg-secondary: #f3f1f8;
+  --bg-card: #ffffff;
+  --bg-card-hover: #fdfcff;
+  --bg-bold: #1e1235;
+  --bg-bold-secondary: #271845;
+  --border: rgba(30,18,53,0.08);
+  --border-hover: rgba(30,18,53,0.15);
+  --text-primary: #1a1228;
+  --text-secondary: rgba(26,18,40,0.55);
+  --text-muted: rgba(26,18,40,0.35);
+  --text-on-bold: #ffffff;
+  --text-on-bold-secondary: rgba(255,255,255,0.7);
+  --text-on-bold-muted: rgba(255,255,255,0.45);
+  --accent: #7c3aed;
+  --accent-glow: rgba(124,58,237,0.1);
+  --accent-bright: #8b5cf6;
+  --accent-soft: #c4b5fd;
+  --gradient-brand: linear-gradient(135deg, #6d28d9, #8b5cf6, #c4b5fd);
+  --green: #7c3aed;
+  --font: 'DM Sans', -apple-system, sans-serif;
+  --font-display: 'Outfit', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --max-w: 1200px;
+  --anchor-offset: 112px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id],
+.hero-vsl[id] {
+  scroll-margin-top: var(--anchor-offset);
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body.not-found-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top left, rgba(124,58,237,0.14), transparent 34vw),
+    linear-gradient(180deg, var(--bg-secondary), var(--bg-primary));
+}
+
+.not-found-shell {
+  width: min(720px, 100%);
+  display: grid;
+  gap: 28px;
+  justify-items: center;
+  text-align: center;
+}
+
+.not-found-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.not-found-logo .logo-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.not-found-card {
+  width: 100%;
+  padding: clamp(34px, 6vw, 58px);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255,255,255,0.82);
+  box-shadow: 0 22px 70px rgba(30,18,53,0.12);
+}
+
+.not-found-code {
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.not-found-card h1 {
+  margin-bottom: 14px;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(38px, 8vw, 68px);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+.not-found-card p:not(.not-found-code) {
+  max-width: 500px;
+  margin: 0 auto;
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.not-found-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+/* ===== ANNOUNCEMENT BAR ===== */
+.announcement-bar {
+  background: linear-gradient(135deg, #6d28d9, var(--accent), var(--accent-bright));
+  padding: 14px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.announcement-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+  pointer-events: none;
+}
+.announcement-bar a {
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.2s;
+}
+.announcement-bar a:hover {
+  opacity: 0.9;
+}
+.announcement-bar .bar-bold {
+  font-weight: 800;
+}
+.announcement-bar .bar-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ===== HEADER ===== */
+.header {
+  position: sticky;
+  top: 12px;
+  z-index: 100;
+  padding: 0 24px;
+  margin-bottom: -80px;
+}
+.header-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  height: 76px;
+  background: #1a1228;
+  border-radius: 16px;
+  padding: 0 36px;
+  box-shadow: 0 4px 24px rgba(30,18,53,0.12);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #fff;
+  text-decoration: none;
+}
+.logo img {
+  height: 30px;
+  width: auto;
+}
+.logo .logo-icon {
+  height: 30px;
+  width: auto;
+}
+.nav { display: flex; align-items: center; justify-content: center; gap: 44px; }
+.nav a {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav a:hover { color: #fff; }
+.header-cta {
+  padding: 16px 48px;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: linear-gradient(135deg, #6d28d9, var(--accent-bright), #a78bfa);
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(124,58,237,0.35), inset 0 1px 0 rgba(255,255,255,0.2);
+  transition: all 0.25s;
+}
+.header-cta:hover {
+  background: linear-gradient(135deg, var(--accent), #a78bfa, #c4b5fd);
+  box-shadow: 0 8px 24px rgba(124,58,237,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+  transform: translateY(-1px);
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 24px;
+  background: linear-gradient(180deg, var(--accent-bright), var(--accent));
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(124,58,237,0.2), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.btn-primary:hover {
+  background: linear-gradient(180deg, #9d6ef7, var(--accent-bright));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(124,58,237,0.25), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.btn-secondary:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+  background: rgba(30,18,53,0.03);
+}
+.mobile-menu {
+  display: none;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+.mobile-menu:hover {
+  background: rgba(255,255,255,0.11);
+  border-color: rgba(255,255,255,0.18);
+}
+.mobile-menu:active {
+  transform: scale(0.97);
+}
+.mobile-menu-lines {
+  width: 18px;
+  height: 18px;
+  position: relative;
+  display: block;
+}
+.mobile-menu-lines span {
+  display: block;
+  position: absolute;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: currentColor;
+  border-radius: 999px;
+  transform-origin: center;
+  transition: top 0.18s ease, transform 0.22s ease, opacity 0.16s ease;
+}
+.mobile-menu-lines span:nth-child(1) {
+  top: 3px;
+}
+.mobile-menu-lines span:nth-child(2) {
+  top: 8px;
+}
+.mobile-menu-lines span:nth-child(3) {
+  top: 13px;
+}
+.header.menu-open .mobile-menu {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.2);
+}
+.header.menu-open .mobile-menu-lines span:nth-child(1) {
+  top: 8px;
+  transform: rotate(45deg);
+}
+.header.menu-open .mobile-menu-lines span:nth-child(2) {
+  opacity: 0;
+}
+.header.menu-open .mobile-menu-lines span:nth-child(3) {
+  top: 8px;
+  transform: rotate(-45deg);
+}
+.mobile-nav-panel {
+  display: none;
+}
+.mobile-nav {
+  display: grid;
+  gap: 4px;
+}
+.mobile-nav a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.78);
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+.mobile-nav a:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.08);
+  color: #fff;
+}
+.mobile-nav .mobile-nav-cta {
+  justify-content: center;
+  min-height: 48px;
+  margin-top: 6px;
+  color: #fff;
+  background: linear-gradient(135deg, #6d28d9, var(--accent-bright), #a78bfa);
+  box-shadow: 0 10px 22px rgba(124,58,237,0.28);
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  padding: 96px 24px;
+  position: relative;
+}
+.section-major {
+  padding: 120px 24px;
+}
+.section-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.section-alt {
+  background: var(--bg-secondary);
+  position: relative;
+}
+.section-alt::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+}
+.section-alt::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+}
+.section-dark {
+  background: linear-gradient(180deg, #1e1235, #150d28);
+  position: relative;
+  color: var(--text-on-bold);
+}
+.section-dark .section-headline,
+.section-dark .section-headline-lg {
+  color: var(--text-on-bold);
+}
+.section-dark .section-sub {
+  color: var(--text-on-bold-secondary);
+}
+.section-dark .stat-block {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.08);
+}
+.section-dark .stat-block:hover {
+  border-color: rgba(255,255,255,0.15);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+}
+.section-dark .stat-num {
+  color: #fff;
+  background: none;
+  -webkit-text-fill-color: #fff;
+}
+.section-dark .stat-block:hover .stat-num {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-dark .stat-label {
+  color: var(--text-on-bold-muted);
+}
+.section-dark .stat-block:hover .stat-label {
+  color: var(--text-on-bold-secondary);
+}
+.section-dark .proof-layer-headline {
+  color: var(--text-on-bold);
+}
+.section-dark .video-test-card {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.08);
+}
+.section-dark .video-test-card:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.15);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+}
+.section-dark .video-test-card .vt-label {
+  color: var(--text-on-bold-secondary);
+}
+.section-dark .video-test-card:hover .vt-label {
+  color: var(--text-on-bold);
+}
+.section-dark .video-test-card .vt-accent {
+  color: var(--accent-soft);
+}
+.section-dark .testimonial-card {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.08);
+}
+.section-dark .testimonial-card:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.15);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+}
+.section-dark .testimonial-card:hover blockquote {
+  color: var(--text-on-bold);
+}
+.section-dark .testimonial-card blockquote {
+  color: var(--text-on-bold-secondary);
+}
+.section-dark .testimonial-author {
+  color: var(--text-on-bold-muted);
+}
+.section-dark .screenshot-wall {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.08);
+}
+.section-dark .screenshot-wall::after {
+  background: linear-gradient(to right, var(--bg-bold), transparent 15%, transparent 85%, var(--bg-bold));
+}
+.section-dark .screenshot-placeholder {
+  color: var(--text-on-bold-muted);
+}
+.section-dark .step {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.08);
+}
+.section-dark .step:hover {
+  border-color: rgba(255,255,255,0.15);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+}
+.section-dark .step h3 { color: #fff; }
+.section-dark .step:hover h3 {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-dark .step p { color: var(--text-on-bold-secondary); }
+.section-dark .step:hover p { color: var(--text-on-bold); }
+.section-dark .step-num {
+  background: rgba(124,58,237,0.3);
+  color: var(--accent-soft);
+}
+.section-dark .step:hover .step-num {
+  background: var(--accent);
+  color: #fff;
+}
+.section-dark .tab-content {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.08);
+}
+.section-dark .tab-preview {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.06);
+  color: var(--text-on-bold-muted);
+}
+.section-dark .tab-info h3 { color: #fff; }
+.section-dark .tab-info p { color: var(--text-on-bold-secondary); }
+.section-dark .tab-info li { color: var(--text-on-bold-secondary); }
+.section-dark .tab-info li::before { color: var(--accent-soft); }
+.section-dark .tab-btn {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.08);
+  color: var(--text-on-bold-secondary);
+}
+.section-dark .tab-btn:hover, .section-dark .tab-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.section-dark::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 50% 0%, rgba(139,92,246,0.15), transparent 60%);
+  pointer-events: none;
+}
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+/* Primary headlines &mdash; hero, stats, final CTA */
+.section-headline {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.5vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 17px;
+  color: var(--text-secondary);
+  max-width: 620px;
+  line-height: 1.8;
+}
+.section-sub.centered { margin: 0 auto; }
+.text-center { text-align: center; }
+
+/* ===== HERO ===== */
+.hero {
+  padding: 160px 24px 100px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -300px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 1000px;
+  background: radial-gradient(circle, rgba(124,58,237,0.06), transparent 60%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+}
+.hero-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  text-align: center;
+}
+.hero-trust-strip {
+  font-family: var(--font-display);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 44px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.hero-trust-strip .stars {
+  color: #fbbf24;
+  letter-spacing: 2px;
+  font-size: 20px;
+}
+.hero-trust-strip .sep {
+  color: var(--text-muted);
+}
+.hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5.5vw, 64px);
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  margin-bottom: 32px;
+  text-transform: uppercase;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-headline .highlight {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+/* Accent emphasis for section headlines */
+.accent-em {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+/* Major headlines - italic + larger */
+.section-headline-lg {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.5vw, 54px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+/* Rotating word */
+.rotating-wrap {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  vertical-align: 0.035em;
+  height: 1.08em;
+  line-height: 1;
+}
+.rotating-word {
+  display: inline-block;
+  position: relative;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: transform 0.27s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.27s cubic-bezier(0.65, 0, 0.35, 1);
+  white-space: nowrap;
+  line-height: 1.05;
+}
+.rotating-word.slide-out {
+  transform: translateY(-110%);
+  opacity: 0;
+}
+.rotating-word.slide-in-prepare {
+  transform: translateY(110%);
+  opacity: 0;
+  transition: none;
+}
+.rotating-word.slide-in {
+  transform: translateY(0);
+  opacity: 1;
+}
+.hero-sub {
+  font-size: 18px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 44px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-cta-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.hero-cta-row .btn-primary {
+  font-size: 17px;
+  padding: 16px 40px;
+}
+.trust-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 56px;
+}
+.trust-stat {
+  text-align: center;
+  padding: 0 32px;
+  position: relative;
+}
+.trust-stat:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 36px;
+  background: var(--border-hover);
+}
+.trust-stat .num {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+.trust-stat .label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-top: 4px;
+  letter-spacing: 0.01em;
+}
+
+/* Hero VSL */
+.hero-vsl {
+  position: relative;
+  max-width: 940px;
+  margin: 0 auto;
+}
+.video-container {
+  position: relative;
+  background: #f7f5fb;
+  border: 1px solid rgba(30,18,53,0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 25px 50px rgba(30,18,53,0.1), 0 4px 12px rgba(124,58,237,0.06);
+}
+.video-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(255,255,255,0.72);
+  pointer-events: none;
+  z-index: 2;
+}
+.video-placeholder {
+  color: var(--text-muted);
+  font-size: 15px;
+  font-weight: 600;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.video-placeholder .play-icon {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--accent-bright), var(--accent));
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px;
+  box-shadow: 0 8px 30px rgba(124,58,237,0.25), inset 0 1px 0 rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.video-placeholder .play-icon:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 40px rgba(124,58,237,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.play-triangle {
+  display: block;
+  flex: 0 0 auto;
+}
+.video-placeholder .play-icon .play-triangle {
+  width: 28px;
+  height: 28px;
+  transform: translateX(2px);
+}
+.video-test-card .mini-play .play-triangle {
+  width: 20px;
+  height: 20px;
+  transform: translateX(1px);
+}
+
+/* Hero testimonials beneath VSL */
+.hero-testimonials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 940px;
+  margin: 28px auto 0;
+}
+.hero-test-card {
+  background: linear-gradient(135deg, #231640, #2d1f50);
+  border: 1px solid rgba(139,92,246,0.15);
+  border-radius: var(--radius);
+  padding: 32px 36px 28px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 16px rgba(30,18,53,0.15);
+  transition: all 0.3s;
+  overflow: hidden;
+}
+.hero-test-card::before,
+.hero-test-card::after {
+  font-family: Georgia, serif;
+  font-size: 120px;
+  line-height: 1;
+  position: absolute;
+  color: rgba(139,92,246,0.1);
+  pointer-events: none;
+}
+.hero-test-card::before {
+  content: '\201C';
+  top: -8px;
+  left: 16px;
+}
+.hero-test-card::after {
+  content: '\201D';
+  bottom: -40px;
+  right: 16px;
+}
+.hero-test-card:hover {
+  box-shadow: 0 12px 30px rgba(30,18,53,0.2);
+  transform: translateY(-2px);
+}
+.hero-test-card:hover::before,
+.hero-test-card:hover::after {
+  color: rgba(139,92,246,0.18);
+}
+.hero-test-stars {
+  color: #f59e0b;
+  font-size: 16px;
+  letter-spacing: 3px;
+  margin-bottom: 14px;
+}
+.hero-test-card blockquote {
+  font-size: 15px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.7;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.hero-test-card:hover blockquote {
+  color: rgba(255,255,255,0.95);
+}
+.hero-test-author {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== STATS SECTION ===== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+.stat-block {
+  text-align: center;
+  min-width: 0;
+  padding: 36px 16px 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition-property: transform, box-shadow, border-color, background-color;
+  transition-duration: 0.58s;
+  transition-timing-function: ease-out;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+.stat-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-brand);
+  opacity: 0.4;
+  transition: opacity 0.58s ease-out, height 0.58s ease-out;
+}
+.stat-block::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.04), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.7s ease-out;
+  pointer-events: none;
+}
+.stat-block:hover {
+  border-color: rgba(124,58,237,0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(30,18,53,0.08);
+  transition-duration: 0.28s;
+}
+.stat-block:hover::before {
+  opacity: 1;
+  height: 3px;
+}
+.stat-block:hover::after {
+  opacity: 1;
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 10px;
+  transition: color 0.58s ease-out, background 0.58s ease-out, -webkit-text-fill-color 0.58s ease-out, text-shadow 0.58s ease-out;
+  background: linear-gradient(135deg, var(--text-primary), var(--text-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  position: relative;
+  display: inline-block;
+}
+.section-dark .stat-num::after {
+  content: attr(data-stat-value);
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.58s ease-out;
+}
+.stat-block:hover .stat-num {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-dark .stat-block:hover .stat-num::after {
+  opacity: 1;
+  transition-duration: 0.28s;
+}
+.stat-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+  transition: color 0.58s ease-out;
+}
+.stat-block:hover .stat-label {
+  color: var(--text-secondary);
+}
+
+/* ===== CARD GRID ===== */
+.card-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+.card-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+.card-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  box-shadow: 0 1px 3px rgba(30,18,53,0.06);
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gradient-brand);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.04), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.card:hover {
+  border-color: rgba(124,58,237,0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(30,18,53,0.08);
+}
+.card:hover::before { opacity: 1; }
+.card:hover::after { opacity: 1; }
+.card-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: var(--accent-glow);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+  color: var(--accent);
+  transition: all 0.4s ease;
+}
+.card:hover .card-icon {
+  background: rgba(124,58,237,0.12);
+  color: var(--accent-bright);
+}
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+  transition: all 0.4s ease;
+}
+.card:hover h3 {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.card p {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  transition: color 0.4s ease;
+}
+.card:hover p { color: var(--text-primary); }
+
+/* ===== WHAT YOU GET (product cards) ===== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+.product-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  box-shadow: 0 1px 3px rgba(30,18,53,0.06);
+}
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gradient-brand);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.product-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.04), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.product-card:hover {
+  border-color: rgba(124,58,237,0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(30,18,53,0.08);
+}
+.product-card:hover::before { opacity: 1; }
+.product-card:hover::after { opacity: 1; }
+.product-card:hover h3 {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.product-card:hover p { color: var(--text-primary); }
+.product-card .tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  background: var(--accent-glow);
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 14px;
+  transition: all 0.4s ease;
+}
+.product-card:hover .tag {
+  color: var(--accent-bright);
+  background: rgba(124,58,237,0.08);
+}
+.product-card h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  transition: all 0.4s ease;
+}
+.product-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  transition: color 0.4s ease;
+}
+.close-line {
+  text-align: center;
+  margin-top: 40px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ===== SPLIT SECTION (beginners/advanced) ===== */
+.split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+.split-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: default;
+  box-shadow: 0 1px 3px rgba(30,18,53,0.06);
+}
+.split-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-brand);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.split-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.04), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.split-card:hover {
+  border-color: rgba(124,58,237,0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(30,18,53,0.08);
+}
+.split-card:hover::before {
+  opacity: 1;
+}
+.split-card:hover::after {
+  opacity: 1;
+}
+.split-card h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  transition: all 0.4s ease;
+}
+.split-card:hover h3 {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.split-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.split-card li {
+  font-size: 15px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.5;
+  transition: color 0.4s ease;
+}
+.split-card:hover li {
+  color: var(--text-primary);
+}
+.split-card li::before {
+  content: '';
+  width: 6px; height: 6px;
+  min-width: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  margin-top: 8px;
+  transition: background 0.4s ease;
+}
+.split-card:hover li::before {
+  background: var(--accent-bright);
+}
+.bridge {
+  font-family: var(--font-display);
+  text-align: center;
+  margin-top: 32px;
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== SOCIAL PROOF ===== */
+.proof-layer {
+  margin-top: 56px;
+}
+.proof-layer-full {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+.proof-layer-full .proof-layer-headline {
+  padding: 0 24px;
+}
+.proof-layer-full .success-wall-cta {
+  margin-top: 32px;
+  padding: 0 24px;
+}
+.proof-layer-headline {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.testimonial-marquee-window {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.testimonial-marquee-window::before,
+.testimonial-marquee-window::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: min(13vw, 140px);
+  z-index: 3;
+  pointer-events: none;
+}
+.testimonial-marquee-window::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-secondary), rgba(243,241,248,0));
+}
+.testimonial-marquee-window::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-secondary), rgba(243,241,248,0));
+}
+.review-marquee-track {
+  display: flex;
+  grid-template-columns: none;
+  gap: 16px;
+  width: max-content;
+  animation: marqueeScroll 46s linear infinite;
+  padding: 4px 0;
+}
+.review-marquee-track:hover {
+  animation-play-state: paused;
+}
+.review-marquee-track .testimonial-card {
+  width: clamp(280px, 28vw, 390px);
+  min-height: 260px;
+  flex: 0 0 auto;
+}
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px 24px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(30,18,53,0.06);
+}
+.testimonial-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gradient-brand);
+  opacity: 1;
+  transition: height 0.3s ease;
+}
+.testimonial-card::after {
+  content: '\201C';
+  font-family: Georgia, serif;
+  font-size: 100px;
+  line-height: 1;
+  position: absolute;
+  top: -8px;
+  right: 16px;
+  color: rgba(124,58,237,0.06);
+  pointer-events: none;
+  transition: color 0.3s;
+}
+.testimonial-card:hover {
+  border-color: rgba(124,58,237,0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(30,18,53,0.08);
+}
+.testimonial-card:hover::before { height: 4px; }
+.testimonial-card:hover::after { color: rgba(124,58,237,0.12); }
+.testimonial-card:hover blockquote { color: var(--text-primary); }
+.testimonial-stars {
+  color: #fbbf24;
+  font-size: 14px;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+.testimonial-card blockquote {
+  flex: 1 1 auto;
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-style: normal;
+  margin-bottom: 14px;
+  transition: color 0.4s ease;
+}
+.testimonial-author {
+  margin-top: auto;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.screenshot-wall {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  border: 0;
+  background: var(--bg-secondary);
+  width: 100%;
+  padding: 28px 0;
+}
+.screenshot-wall::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--bg-secondary) 0%,
+    rgba(243,241,248,0.74) 8%,
+    rgba(243,241,248,0) 24%,
+    rgba(243,241,248,0) 76%,
+    rgba(243,241,248,0.74) 92%,
+    var(--bg-secondary) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+.screenshot-wall-track {
+  display: grid;
+  gap: 18px;
+}
+.screenshot-wall-row {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  animation: screenshotWallScroll 32s linear infinite;
+}
+.screenshot-wall-row.is-reverse {
+  animation-name: screenshotWallScrollReverse;
+}
+.screenshot-wall:hover .screenshot-wall-row {
+  animation-play-state: paused;
+}
+.screenshot-placeholder {
+  position: relative;
+  width: clamp(220px, 18vw, 280px);
+  aspect-ratio: 4 / 3;
+  flex: 0 0 auto;
+  min-height: 170px;
+  border: 1px solid rgba(124,58,237,0.08);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(124,58,237,0.025), rgba(255,255,255,0.72)),
+    var(--bg-card);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+  text-align: center;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  overflow: hidden;
+}
+.screenshot-placeholder.ve-image-placeholder-filled,
+.tab-preview.ve-image-placeholder-filled {
+  background-size: cover;
+  background-position: center;
+  color: transparent !important;
+}
+.screenshot-placeholder.ve-image-placeholder-filled *,
+.tab-preview.ve-image-placeholder-filled * {
+  opacity: 0;
+}
+@keyframes screenshotWallScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes screenshotWallScrollReverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* ===== VIDEO TESTIMONIAL PLACEHOLDER ===== */
+.video-testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.video-test-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(30,18,53,0.06);
+  position: relative;
+  overflow: hidden;
+}
+.video-test-card:hover {
+  border-color: rgba(124,58,237,0.2);
+  box-shadow: 0 12px 40px rgba(30,18,53,0.1);
+}
+.video-test-thumb {
+  position: relative;
+  aspect-ratio: 16/10;
+  background: linear-gradient(135deg, #1e1235, #2d1f50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.video-test-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.video-test-card .mini-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(124,58,237,0.3);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+.video-test-card:hover .mini-play {
+  transform: translate(-50%, -50%);
+  box-shadow: 0 8px 30px rgba(124,58,237,0.4);
+}
+.video-test-card .vt-label {
+  padding: 16px 20px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.4;
+  text-align: center;
+}
+.video-test-card .vt-label .vt-accent {
+  color: var(--accent);
+}
+.video-test-card:hover .vt-label { color: var(--text-primary); }
+
+/* ===== INSIDE DIVINE TABS ===== */
+.tabs-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 48px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.tab-btn {
+  padding: 10px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tab-btn:hover, .tab-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.tab-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+}
+.tab-info.tab-text-enter {
+  animation: tabTextEnter 0.48s ease-out both;
+}
+@keyframes tabTextEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tab-info.tab-text-enter {
+    animation: none;
+  }
+}
+.tab-preview {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  aspect-ratio: 16/10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+.tab-info h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+.tab-info p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+.tab-info ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tab-info li {
+  font-size: 14px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tab-info li::before {
+  content: '\2713';
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 13px;
+  flex: 0 0 auto;
+}
+
+/* ===== STEPS / HOW IT WORKS ===== */
+.steps-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 48px;
+  position: relative;
+}
+.step {
+  text-align: center;
+  padding: 32px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: default;
+  box-shadow: 0 1px 3px rgba(30,18,53,0.06);
+}
+.step::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gradient-brand);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.step:hover {
+  border-color: rgba(124,58,237,0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(30,18,53,0.08);
+}
+.step:hover::before { opacity: 1; }
+.step-num {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 14px;
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--accent-glow);
+  border-radius: 4px;
+  transition: all 0.4s ease;
+}
+.step:hover .step-num {
+  background: var(--accent);
+  color: #fff;
+}
+.step h3 {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  transition: all 0.4s ease;
+}
+.step:hover h3 {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.step p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  transition: color 0.4s ease;
+}
+.step:hover p { color: var(--text-primary); }
+
+/* ===== COMPARISON TABLE ===== */
+.comparison-table {
+  margin-top: 48px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(30,18,53,0.06);
+  background: var(--bg-card);
+}
+.comp-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+.comp-header div {
+  font-family: var(--font-display);
+  padding: 20px 24px;
+  font-size: 15px;
+  font-weight: 700;
+}
+.comp-header div:nth-child(2) { color: var(--accent); }
+.comp-header div:nth-child(3) { color: var(--text-muted); }
+.comp-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.comp-row:nth-child(odd) { background: rgba(124,58,237,0.015); }
+.comp-row:last-child { border-bottom: none; }
+.comp-row:hover { background: rgba(124,58,237,0.04); }
+.comp-row div {
+  padding: 16px 24px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.comp-row div:first-child {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.comp-row div:nth-child(2) {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+.comp-row div:nth-child(3) {
+  color: var(--text-muted);
+}
+.comp-header div:nth-child(2) {
+  position: relative;
+}
+.comp-header div:nth-child(2)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-brand);
+  border-radius: 1px;
+}
+.check { color: var(--accent); font-weight: 700; }
+.x-mark { color: rgba(30,18,53,0.2); }
+
+/* ===== ACCORDION / FAQ ===== */
+.accordion {
+  margin-top: 48px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.accordion-item {
+  border: 1px solid var(--border);
+  border-left: 3px solid transparent;
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  overflow: hidden;
+  background: var(--bg-card);
+  box-shadow: 0 1px 3px rgba(30,18,53,0.04);
+  transition: all 0.3s;
+}
+.accordion-item:hover {
+  border-left-color: var(--accent-soft);
+}
+.accordion-item.open {
+  border-left-color: var(--accent);
+  box-shadow: 0 4px 12px rgba(30,18,53,0.06);
+}
+.accordion-trigger {
+  width: 100%;
+  padding: 20px 24px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.2s;
+}
+.accordion-trigger:hover { color: var(--accent); }
+.accordion-trigger .icon {
+  font-size: 20px;
+  color: var(--text-muted);
+  transition: transform 0.3s;
+}
+.accordion-item.open .accordion-trigger .icon { transform: rotate(45deg); }
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+.accordion-item.open .accordion-body { max-height: 200px; }
+.accordion-body-inner {
+  padding: 0 24px 20px;
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Dark section overrides for split cards */
+.section-dark .split-card {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.08);
+}
+.section-dark .split-card:hover {
+  border-color: rgba(255,255,255,0.15);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+}
+.section-dark .split-card h3 { color: #fff; }
+.section-dark .split-card:hover h3 {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-dark .split-card li { color: var(--text-on-bold-secondary); }
+.section-dark .split-card:hover li { color: var(--text-on-bold); }
+.section-dark .split-card li::before { background: var(--accent-soft); }
+.section-dark .split-card:hover li::before { background: #fff; }
+.section-dark .btn-primary {
+  background: #fff;
+  color: var(--accent);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.section-dark .btn-primary:hover {
+  background: var(--accent-soft);
+  color: var(--bg-bold);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  transform: translateY(-2px);
+}
+
+/* Dark section overrides for cards */
+.section-dark .card {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.08);
+}
+.section-dark .card:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.15);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+}
+.section-dark .card h3 { color: #fff; }
+.section-dark .card p { color: var(--text-on-bold-secondary); }
+.section-dark .card:hover p { color: var(--text-on-bold); }
+.section-dark .card-icon {
+  background: rgba(139,92,246,0.2);
+  color: var(--accent-soft);
+}
+.section-dark .card:hover .card-icon {
+  background: rgba(139,92,246,0.3);
+  color: #fff;
+}
+
+/* ===== TESTIMONIAL MARQUEE ===== */
+.testimonial-marquee-section {
+  padding: 60px 0;
+  overflow: hidden;
+  margin-top: -1px;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 42%, var(--bg-secondary) 100%);
+  position: relative;
+}
+.testimonial-marquee-section::before,
+.testimonial-marquee-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+.testimonial-marquee-section::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(243,241,248,0.72), rgba(243,241,248,0));
+}
+.testimonial-marquee-section::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(243,241,248,0.72), rgba(243,241,248,0));
+}
+.marquee-track {
+  display: flex;
+  gap: 20px;
+  animation: marqueeScroll 40s linear infinite;
+  width: max-content;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-card {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 340px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(30,18,53,0.06);
+  position: relative;
+}
+.marquee-card .marquee-stars {
+  color: #fbbf24;
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.marquee-card blockquote {
+  flex: 1 1 auto;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 12px;
+  font-style: normal;
+}
+.marquee-card .marquee-author {
+  margin-top: auto;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* ===== BOTTOM PROOF ===== */
+.bottom-proof {
+  padding: 80px 24px;
+  background: var(--bg-secondary);
+}
+.bottom-proof-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.bottom-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+.discord-screenshot-card {
+  background: #1a1228;
+  border-radius: var(--radius);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.discord-screenshot-card .discord-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.discord-screenshot-card .discord-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+.discord-screenshot-card .discord-name {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+.discord-screenshot-card .discord-channel {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+}
+.discord-screenshot-card .discord-msg {
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.65;
+}
+.discord-screenshot-card .discord-reactions {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+}
+.discord-screenshot-card .discord-reaction {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 3px 8px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.72);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+.discord-screenshot-card .discord-reaction:hover,
+.discord-screenshot-card .discord-reaction:focus-visible {
+  background: rgba(139,92,246,0.18);
+  border-color: rgba(196,181,253,0.28);
+  color: rgba(255,255,255,0.82);
+  outline: none;
+}
+.discord-screenshot-card .discord-reaction[aria-pressed="true"] {
+  background: rgba(139,92,246,0.26);
+  border-color: rgba(196,181,253,0.42);
+  color: #fff;
+}
+.discord-screenshot-card .discord-reaction:active {
+  transform: scale(0.96);
+}
+
+/* ===== FINAL CTA ===== */
+.final-cta {
+  text-align: center;
+  padding: 120px 24px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #1e1235, #150d28);
+  color: var(--text-on-bold);
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(139,92,246,0.2), transparent 70%);
+  pointer-events: none;
+}
+.final-cta .section-headline-lg {
+  position: relative;
+  color: #fff;
+}
+.final-cta .section-sub {
+  margin: 0 auto 36px;
+  position: relative;
+  color: var(--text-on-bold-secondary);
+}
+.final-cta .btn-primary {
+  font-size: 16px;
+  padding: 14px 32px;
+  position: relative;
+  background: #fff;
+  color: var(--accent);
+}
+.final-cta > svg,
+.final-cta .section-inner > svg,
+.final-cta .section-headline-lg svg,
+.final-cta .section-headline-lg polygon {
+  display: none;
+}
+.final-cta .btn-primary:hover {
+  background: var(--accent-soft);
+  color: var(--bg-bold);
+}
+.final-proof {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 36px;
+  position: relative;
+}
+.final-proof span {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-on-bold-muted);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  padding: 48px 24px;
+  border-top: 1px solid var(--border);
+}
+.footer-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-inner.footer-centered {
+  flex-direction: column;
+  text-align: center;
+  gap: 28px;
+}
+.footer-brand {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.footer-brand .footer-logo {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 auto 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: fit-content;
+}
+.footer-brand .footer-logo img {
+  height: 22px;
+  width: auto;
+}
+.footer-brand .footer-logo .logo-icon {
+  height: 22px;
+  width: auto;
+}
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+.footer-links a {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--text-primary); }
+.footer-socials {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.footer-socials a {
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.footer-socials a:hover { color: var(--accent); }
+.footer-copy {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.footer-disclaimer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+.footer-disclaimer strong { color: var(--text-secondary); }
+
+/* ===== ANIMATIONS ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  :root { --anchor-offset: 100px; }
+  .header { padding: 0 18px; }
+  .header-inner {
+    height: 68px;
+    padding: 0 22px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+  .logo { font-size: 21px; }
+  .nav { gap: 22px; min-width: 0; }
+  .nav a { font-size: 13px; white-space: nowrap; }
+  .header-cta {
+    padding: 13px 28px;
+    font-size: 14px;
+  }
+  .hero {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .hero-inner,
+  .hero-vsl,
+  .hero-sub,
+  .hero-headline {
+    width: 100%;
+  }
+  .hero-headline {
+    max-width: min(100%, 880px);
+    font-size: clamp(38px, 6.2vw, 58px);
+    overflow-wrap: normal;
+  }
+  .hero-sub {
+    max-width: 640px;
+  }
+  .hero-vsl {
+    max-width: min(100%, 860px);
+  }
+  .trust-strip {
+    flex-wrap: wrap;
+    row-gap: 18px;
+  }
+  .trust-stat {
+    flex: 0 1 150px;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .stat-block {
+    padding: 30px 16px 26px;
+  }
+  .stat-num {
+    font-size: clamp(32px, 5vw, 46px);
+  }
+  .card-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-row { grid-template-columns: repeat(3, 1fr); }
+  .comp-header div, .comp-row div { padding: 14px 16px; font-size: 13px; }
+  .video-testimonial-grid { grid-template-columns: repeat(2, 1fr); }
+  .testimonial-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  :root { --anchor-offset: 88px; }
+  .header {
+    top: 8px;
+    padding: 0 16px;
+    margin-bottom: -64px;
+  }
+  .header-inner {
+    height: 60px;
+    padding: 0 18px;
+    border-radius: 14px;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+  }
+  .nav { display: none; }
+  .header-cta { display: none; }
+  .mobile-menu { display: inline-flex; }
+  .mobile-nav-panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 16px;
+    right: 16px;
+    z-index: 101;
+    display: block;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 8px;
+    background: #1a1228;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    box-shadow: 0 18px 45px rgba(30,18,53,0.24);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.16s ease, transform 0.16s ease, visibility 0s linear 0.16s;
+  }
+  .header.menu-open .mobile-nav-panel {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition-delay: 0s;
+  }
+  .hero { padding: 104px 20px 60px; }
+  .hero-trust-strip {
+    flex-wrap: wrap;
+    row-gap: 6px;
+    margin-bottom: 28px;
+    font-size: 13px;
+  }
+  .hero-trust-strip .stars {
+    flex-basis: 100%;
+    font-size: 17px;
+  }
+  .hero-headline {
+    max-width: 100%;
+    font-size: clamp(34px, 9vw, 48px);
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+    margin-bottom: 22px;
+    text-wrap: balance;
+  }
+  .hero-headline-prefix,
+  .hero-headline-market {
+    display: block;
+  }
+  .hero-headline-market {
+    white-space: nowrap;
+  }
+  .hero-sub {
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 30px;
+  }
+  .hero-cta-row .btn-primary {
+    width: min(100%, 360px);
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+    padding: 14px 22px;
+    font-size: 14px;
+  }
+  .hero-vsl {
+    max-width: 100%;
+    margin-top: 8px;
+  }
+  .hero-testimonials { grid-template-columns: 1fr; }
+  .section-headline-lg { font-size: clamp(28px, 6vw, 40px); }
+  .section-major { padding: 80px 24px; }
+  .trust-strip {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 42px;
+  }
+  .trust-stat {
+    padding: 18px 12px 16px;
+    background: rgba(255,255,255,0.72);
+    border: 1px solid rgba(124,58,237,0.1);
+    border-radius: 14px;
+    box-shadow: 0 10px 28px rgba(30,18,53,0.05);
+  }
+  .trust-stat:last-child {
+    grid-column: 1 / -1;
+  }
+  .trust-stat:not(:last-child)::after { display: none; }
+  .trust-stat .num {
+    font-size: 26px;
+  }
+  .trust-stat .label {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  .announcement-bar a { font-size: 13px; }
+  .section { padding: 72px 24px; }
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 34px;
+  }
+  .stat-block {
+    padding: 26px 14px 24px;
+  }
+  .stat-block:last-child {
+    grid-column: 1 / -1;
+  }
+  .stat-num {
+    font-size: clamp(30px, 8vw, 40px);
+  }
+  .stat-label {
+    font-size: 12px;
+  }
+  .card-grid-4, .card-grid-3, .card-grid-2 { grid-template-columns: 1fr; }
+  .product-grid { grid-template-columns: 1fr; }
+  .split-grid { grid-template-columns: 1fr; }
+  .steps-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 34px;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "num title"
+      "num copy";
+    column-gap: 16px;
+    row-gap: 4px;
+    padding: 22px 20px;
+    text-align: left;
+  }
+  .step-num {
+    grid-area: num;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    border-radius: 12px;
+  }
+  .step h3 {
+    grid-area: title;
+    font-size: 18px;
+    margin: 0;
+  }
+  .step p {
+    grid-area: copy;
+    font-size: 14px;
+    margin: 0;
+  }
+  .tab-content { grid-template-columns: 1fr; }
+  .comparison-table {
+    display: grid;
+    gap: 12px;
+    margin-top: 34px;
+    border: 0;
+    box-shadow: none;
+    background: transparent;
+    overflow: visible;
+  }
+  .comp-header {
+    display: none;
+  }
+  .comp-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    box-shadow: 0 2px 8px rgba(30,18,53,0.05);
+    overflow: hidden;
+  }
+  .comp-row:nth-child(odd) {
+    background: var(--bg-card);
+  }
+  .comp-row div {
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .comp-row div:first-child {
+    padding: 4px 2px 2px;
+    background: transparent;
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 800;
+  }
+  .comp-row div:nth-child(2),
+  .comp-row div:nth-child(3) {
+    display: block;
+    padding: 13px 14px;
+    border-radius: 12px;
+  }
+  .comp-row div:nth-child(2) {
+    background: rgba(124,58,237,0.08);
+    border: 1px solid rgba(124,58,237,0.18);
+    color: var(--text-primary);
+  }
+  .comp-row div:nth-child(3) {
+    background: rgba(30,18,53,0.035);
+    border: 1px solid rgba(30,18,53,0.06);
+    color: var(--text-secondary);
+  }
+  .comp-row div:nth-child(2)::before,
+  .comp-row div:nth-child(3)::before {
+    display: block;
+    margin-bottom: 5px;
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .comp-row div:nth-child(2)::before {
+    content: 'Divine';
+    color: var(--accent);
+  }
+  .comp-row div:nth-child(3)::before {
+    content: 'Others';
+    color: var(--text-muted);
+  }
+  .video-testimonial-grid { grid-template-columns: 1fr; }
+  .testimonial-grid { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; text-align: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; }
+  .final-proof { flex-direction: column; align-items: center; gap: 12px; }
+  .bottom-proof-grid { grid-template-columns: 1fr; }
+  .marquee-card { width: 280px; }
+}
+
+@media (max-width: 480px) {
+  :root { --anchor-offset: 84px; }
+  .announcement-bar { padding: 12px 16px; }
+  .header { padding: 0 12px; }
+  .header-inner { padding: 0 14px; }
+  .mobile-nav-panel {
+    left: 12px;
+    right: 12px;
+  }
+  .logo { font-size: 19px; }
+  .logo .logo-icon { height: 26px; }
+  .hero { padding: 96px 16px 52px; }
+  .hero-trust-strip {
+    gap: 6px 8px;
+    font-size: 12px;
+  }
+  .hero-trust-strip .sep { display: none; }
+  .hero-headline {
+    font-size: clamp(30px, 11vw, 40px);
+    line-height: 1.1;
+  }
+  .hero-sub { font-size: 15px; }
+  .trust-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .trust-stat {
+    padding: 18px 10px 16px;
+  }
+  .trust-stat .num { font-size: 28px; }
+  .trust-stat .label { font-size: 12px; }
+  .video-container { border-radius: 12px; }
+  .video-placeholder .play-icon {
+    width: 58px;
+    height: 58px;
+  }
+  .hero-test-card { padding: 22px 20px; }
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .stat-block {
+    padding: 24px 18px 22px;
+  }
+  .stat-num {
+    font-size: 34px;
+  }
+  .stat-label {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+  .step {
+    padding: 20px 16px;
+    column-gap: 14px;
+  }
+  .step-num {
+    width: 40px;
+    height: 40px;
+  }
+  .comparison-table {
+    gap: 10px;
+  }
+  .comp-row div {
+    font-size: 13px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="logo"><svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="dg1" x1="0%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#9333ea"/><stop offset="55%" stop-color="#c084fc"/><stop offset="100%" stop-color="#c4b5fd"/></linearGradient></defs><path d="M22 8 L55 8 C78 8 92 24 92 44 L92 56 C92 84 70 97 44 97 L22 97 C14 97 8 91 8 83 L8 22 C8 14 14 8 22 8 Z M34 28 L34 77 L44 77 C60 77 72 66 72 52 L72 44 C72 34 64 28 55 28 Z" fill="url(#dg1)"/></svg>divine</a>
+    <nav class="nav">
+      <a href="#why">Why Divine</a>
+      <a href="#inside">What's Inside</a>
+      <a href="#how">How It Works</a>
+      <a href="#proof">Testimonials</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#" class="header-cta">Join Free</a>
+    <button class="mobile-menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span class="mobile-menu-lines" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+  </div>
+  <div class="mobile-nav-panel" id="mobile-nav">
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <a href="#why">Why Divine</a>
+      <a href="#inside">What's Inside</a>
+      <a href="#how">How It Works</a>
+      <a href="#proof">Testimonials</a>
+      <a href="#faq">FAQ</a>
+      <a href="#" class="mobile-nav-cta">Join Free</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner fade-in">
+    <div class="hero-trust-strip">
+      <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span>Based on 4,500+ Verified Reviews</span>
+      <span class="sep">&bull;</span>
+      <span>100,000+ Members Served</span>
+    </div>
+    <h1 class="hero-headline"><span class="hero-headline-prefix">10X YOUR</span> <span class="hero-headline-market"><span class="rotating-wrap"><span class="rotating-word" id="rotating-word">eBay</span></span> <span class="hero-headline-suffix">SALES</span></span></h1>
+    <p class="hero-sub">Showing resellers what to buy, where to buy it, and how to resell it for a profit. The largest, highest-rated, and most trusted reselling community in the world... and your first 5 days are free.</p>
+    <div class="hero-cta-row">
+      <a href="#" class="btn-primary">
+        See What 100,000+ Resellers Already Know
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5-5-5-5"/></svg>
+      </a>
+    </div>
+    <div class="trust-strip">
+      <div class="trust-stat">
+        <div class="num">100,000+</div>
+        <div class="label">Resellers served</div>
+      </div>
+      <div class="trust-stat">
+        <div class="num">4,500+</div>
+        <div class="label">5-star reviews</div>
+      </div>
+      <div class="trust-stat">
+        <div class="num">250,000+</div>
+        <div class="label">Member wins</div>
+      </div>
+      <div class="trust-stat">
+        <div class="num">#1</div>
+        <div class="label">Rated on Whop</div>
+      </div>
+      <div class="trust-stat">
+        <div class="num">Since 2019</div>
+        <div class="label">And still #1</div>
+      </div>
+    </div>
+    <div class="hero-vsl" id="vsl">
+      <div class="video-container">
+        <div class="video-placeholder">
+          <div class="play-icon">
+            <svg class="play-triangle" width="28" height="28" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="7,4 20,12 7,20"/></svg>
+          </div>
+          See exactly how Divine works
+        </div>
+      </div>
+    </div>
+    <div class="hero-testimonials">
+      <div class="hero-test-card">
+        <div class="hero-test-stars" data-ve-key="hero-test-1-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote data-ve-key="hero-test-1-quote">"ELEVEN. THOUSAND. DOLLARS. Last month I made $1.4K profit, this month I changed my strategies and it paid off. I made more than both of what my parents make combined."</blockquote>
+        <div class="hero-test-author" data-ve-key="hero-test-1-author">&mdash; Ramces E.</div>
+      </div>
+      <div class="hero-test-card">
+        <div class="hero-test-stars" data-ve-key="hero-test-2-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote data-ve-key="hero-test-2-quote">"Joined 4 groups before this and never made my money back. Found Divine's free trial, bought the sub, and the next day I paid it off and the next 4 months."</blockquote>
+        <div class="hero-test-author" data-ve-key="hero-test-2-author">&mdash; Jacob P.</div>
+      </div>
+    </div>
+    <div class="text-center" style="margin-top:40px">
+      <div class="hero-proof-row" style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px;">
+        <span class="hero-proof-stars" data-ve-key="hero-proof-stars" style="color:#fbbf24;font-size:18px;letter-spacing:2px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="hero-proof-label" data-ve-key="hero-proof-label" style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--text-primary);letter-spacing:0.05em;text-transform:uppercase;">4,500+ Reviews on</span>
+        <span class="hero-proof-badge" style="display:inline-flex;align-items:center;gap:5px;background:#E8503A;color:#fff;font-family:var(--font-display);font-size:13px;font-weight:700;padding:5px 12px;border-radius:20px;letter-spacing:0.03em;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAASCAYAAABfJS4tAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAAC4UlEQVR4nNVUSWgUQRR9v6q6p8eZ0cRIgluiuBEjioK7Mu4eRAiYNuDBgzeDxlxERGUcL3oTBMGDigcVSVBEQXCNIh5jDkJwQSELKrjEZCYzPd1d9T1kokGNQfCg7/rrv3qf/94H/jswQK1JKE5BMEDsQnIKYqieAgQPryehGKCherMLyS4kA8QpCHYhR/90lEfDBfwIak1WlVTZpr5EmloBKvWBl289dXpBpuwptbUFt9bOnLEw4u92WC8FQWaNut8d2meWr371jtIwT9dXbqi0zE7JZhYTZT4H1qWOL4UWNdWms9PjtA0+A2yAiFhqIXDXcLz0+boZW6ZE8hdiFsZBM8CMkrhZzn1eNaVR17N52smJKmgSAoABQIxSx2wcEE5cvWfdmMhRWG6JepBB1sPrFwVr28VI575JVngCxiBf4EAAHIkouzdrLrd7scMfN1XdKLPDrX5gdBiytogUCyHe5vjgZ9+c+7aEns2VJ2OSFz/uS+xYEs8eqIjoBt83OmTAEpCWknjn48i9vrFXasdlriZsM98LdMggRCWpAUPZzlDuqrnb1YJB8YMbJoCBlOrZdP725Biv8/KhxyAVlaQ8Q7pTU12/7/TWRL2bY6RJ5EMTEgiORepLIF51BLJ+5f3Odk5C0SOEggCmogPYTXOfpuP9OX7jKOFEFamsoe4nGXuRzXbF4njhoQOdyAWsBRM5llAfCnT7WtZZOZy0KPQ7UoBIA+b6ijmTVsWz16Ugc+mTrK0rwaGKqN7j+6HWTKwI0lKCun06VXmnpwkAN7uQ21ugv9ntV96lFmh32ZToXBqfaIj33iyP8ZJCPvQZpBxFIqehu0K5p/pe9xlOQRxNA+lBX2BE4iHlxwDzzJ1rJ3oz+8uUaYwKLjcABpg6nnty77LWrgfF0TUA/ikgIyWHAaJiw43k7Ak1Tr46z1yY96miHW1twdBkI/WPil/F+ndR/jPy4nFqLh6bv0L6z+Er+rtU0caq4SwAAAAASUVORK5CYII=" alt="Whop" style="height:14px;width:auto;filter:brightness(10);"> Whop</span>
+      </div>
+      <a href="#" class="btn-primary" style="font-size:16px;padding:14px 32px;">
+        Join Free
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5-5-5-5"/></svg>
+      </a>
+      <p class="hero-proof-note" data-ve-key="hero-proof-note" style="font-size:13px;color:var(--text-muted);margin-top:12px;">5 days free. Cancel anytime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORY LEADERSHIP STATS -->
+<section class="section section-dark">
+  <div class="section-inner text-center fade-in">
+    <div class="section-headline-lg">No other reselling community <span class="accent-em">comes close.</span></div>
+    <p class="section-sub centered">More members. More proof. More wins. More trust.</p>
+    <div class="stats-grid">
+      <div class="stat-block">
+        <div class="stat-num" data-stat-value="100K+">100K+</div>
+        <div class="stat-label">Resellers served since 2019</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num" data-stat-value="4,500+">4,500+</div>
+        <div class="stat-label">5-star reviews on Whop</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num" data-stat-value="250K+">250K+</div>
+        <div class="stat-label">Member wins</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num" data-stat-value="#1">#1</div>
+        <div class="stat-label">Top-rated community on Whop</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num" data-stat-value="50+">50+</div>
+        <div class="stat-label">Staff members</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="section section-alt" id="proof">
+  <div class="section-inner fade-in">
+    <div class="text-center">
+      <div class="section-headline-lg">Members win here <span class="accent-em">every day.</span></div>
+      <p class="section-sub centered">This is what 7 years and 100,000+ members looks like.</p>
+    </div>
+
+    <!-- Layer 1: Video Testimonials -->
+    <div class="proof-layer">
+      <div class="proof-layer-headline text-center" data-ve-key="proof-video-headline">Hear it from members who started where you are</div>
+      <div class="video-testimonial-grid">
+        <div class="video-test-card">
+          <div class="video-test-thumb">
+            <div class="mini-play"><svg class="play-triangle" width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="7,4 20,12 7,20"/></svg></div>
+          </div>
+          <div class="vt-label">How Hudson Went From Debt to <span class="vt-accent">Buying a Home.</span></div>
+        </div>
+        <div class="video-test-card">
+          <div class="video-test-thumb">
+            <div class="mini-play"><svg class="play-triangle" width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="7,4 20,12 7,20"/></svg></div>
+          </div>
+          <div class="vt-label">How AB Went From $10K to <span class="vt-accent">$300K in One Month.</span></div>
+        </div>
+        <div class="video-test-card">
+          <div class="video-test-thumb">
+            <div class="mini-play"><svg class="play-triangle" width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="7,4 20,12 7,20"/></svg></div>
+          </div>
+          <div class="vt-label">Josiah Was Working Part-Time. Now He Hits <span class="vt-accent">6-Figure Months.</span></div>
+        </div>
+        <div class="video-test-card">
+          <div class="video-test-thumb">
+            <div class="mini-play"><svg class="play-triangle" width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="7,4 20,12 7,20"/></svg></div>
+          </div>
+          <div class="vt-label">Ramces Went From Beginner to <span class="vt-accent">100 Orders a Day.</span></div>
+        </div>
+        <div class="video-test-card">
+          <div class="video-test-thumb">
+            <div class="mini-play"><svg class="play-triangle" width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="7,4 20,12 7,20"/></svg></div>
+          </div>
+          <div class="vt-label">Caleb Used Divine to <span class="vt-accent">Pay Off His Mortgage.</span></div>
+        </div>
+        <div class="video-test-card">
+          <div class="video-test-thumb">
+            <div class="mini-play"><svg class="play-triangle" width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="7,4 20,12 7,20"/></svg></div>
+          </div>
+          <div class="vt-label">Ray Makes <span class="vt-accent">$2,000&ndash;3,000 Extra</span> Every Month.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layer 2: Written Testimonials -->
+    <div class="proof-layer">
+      <div class="proof-layer-headline text-center" data-ve-key="proof-review-headline">The only community on Whop with 4,500+ 5-star reviews</div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"Thanks to Divine, I've already surpassed my weekly paychecks from my 9-5 job through reselling - while only doing it part-time and balancing life with a wife and kids. This community has truly been life-changing."</blockquote>
+          <div class="testimonial-author">&mdash; Sergio M.</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"Just here to say thanks. Been here a year. Thanks to everyone and the staff and everyone else who posts deals and what deals they got. It all helps. $83K profit in my first year of reselling. Only up from here."</blockquote>
+          <div class="testimonial-author">&mdash; Stephen W.</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"So glad I paid and joined this discord. Have made thousands of dollars per month. I'm almost 40, and ever since I joined, I've been able to use the money from here for life and I've been able to increase my 401k contributions. I just hit 235k in my Roth account."</blockquote>
+          <div class="testimonial-author">&mdash; Caleb L.</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"Before I joined, I could not get in the green for reselling to save my life. I had thousands and thousands in the red. Within my first few months, not only did I go green &mdash; I went green for the entire year. I'm not worried anymore about paying off my debt or paying my bills. From the bottom of my heart, THANK YOU!"</blockquote>
+          <div class="testimonial-author">&mdash; Lindsey W.</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"As broke college student who joined one year ago. I can now comfortably buy the things I want and I just recently booked a trip to Japan with my homies who also are in divine. Divine funded all of us and is still helping us till this day. Thank you divine!"</blockquote>
+          <div class="testimonial-author">&mdash; Adam S.</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"I have a good job but the additional income this group generates for me changed everything. One of the biggest things I was able to achieve is pay for IVF to have our daughter. It was still thousands and thousands of dollars and I don't think it would have been possible without this group. You guys literally changed my life."</blockquote>
+          <div class="testimonial-author">&mdash; Jarrid B.</div>
+        </div>
+      </div>
+      <p style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:20px;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.6;">These testimonials reflect individual experiences and are not typical of all members. Outcomes vary based on effort, experience, category, and market conditions.</p>
+    </div>
+
+    <!-- Layer 3: Success Wall -->
+    <div class="proof-layer proof-layer-full">
+      <div class="proof-layer-headline text-center" data-ve-key="proof-success-headline">250,000+ member wins. No other group comes close.</div>
+      <div class="screenshot-wall">
+        <div class="screenshot-wall-track">
+          <div class="screenshot-wall-row is-reverse">
+            <div class="screenshot-placeholder">Member win screenshot</div>
+            <div class="screenshot-placeholder">Member payout screenshot</div>
+            <div class="screenshot-placeholder">Member flip screenshot</div>
+            <div class="screenshot-placeholder">Discord result screenshot</div>
+            <div class="screenshot-placeholder">Success DM screenshot</div>
+            <div class="screenshot-placeholder">Profit proof screenshot</div>
+            <div class="screenshot-placeholder" data-marquee-copy="true" aria-hidden="true">Member win screenshot</div>
+            <div class="screenshot-placeholder" data-marquee-copy="true" aria-hidden="true">Member payout screenshot</div>
+            <div class="screenshot-placeholder" data-marquee-copy="true" aria-hidden="true">Member flip screenshot</div>
+            <div class="screenshot-placeholder" data-marquee-copy="true" aria-hidden="true">Discord result screenshot</div>
+            <div class="screenshot-placeholder" data-marquee-copy="true" aria-hidden="true">Success DM screenshot</div>
+            <div class="screenshot-placeholder" data-marquee-copy="true" aria-hidden="true">Profit proof screenshot</div>
+          </div>
+          <div class="screenshot-wall-row">
+            <div class="screenshot-placeholder">Member win screenshot</div>
+            <div class="screenshot-placeholder">Member payout screenshot</div>
+            <div class="screenshot-placeholder">Member flip screenshot</div>
+            <div class="screenshot-placeholder">Discord result screenshot</div>
+            <div class="screenshot-placeholder">Success DM screenshot</div>
+            <div class="screenshot-placeholder">Profit proof screenshot</div>
+            <div class="screenshot-placeholder" data-marquee-copy="true" aria-hidden="true">Member win screenshot</div>
+            <div class="screenshot-placeholder" data-marquee-copy="true" aria-hidden="true">Member payout screenshot</div>
+            <div class="screenshot-placeholder" data-marquee-copy="true" aria-hidden="true">Member flip screenshot</div>
+            <div class="screenshot-placeholder" data-marquee-copy="true" aria-hidden="true">Discord result screenshot</div>
+            <div class="screenshot-placeholder" data-marquee-copy="true" aria-hidden="true">Success DM screenshot</div>
+            <div class="screenshot-placeholder" data-marquee-copy="true" aria-hidden="true">Profit proof screenshot</div>
+          </div>
+        </div>
+      </div>
+      <div class="success-wall-cta text-center">
+        <a href="#" class="btn-primary" style="font-size:16px;padding:14px 32px;">
+          Join Free
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5-5-5-5"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY DIVINE WINS -->
+<section class="section" id="why">
+  <div class="section-inner fade-in">
+    <div class="text-center">
+      <div class="section-headline-lg">There's a reason Divine stays <span class="accent-em">#1.</span></div>
+      <p class="section-sub centered">The source. The support system. The community serious resellers trust to win.</p>
+    </div>
+    <div class="card-grid-4">
+      <div class="card">
+        <div class="card-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>The source</h3>
+        <p>If you've seen it in another group, it probably started here. Members get profitable opportunities before they spread anywhere else.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="8" r="4"/><path d="M3 20c0-3.3 3.6-6 8-6s8 2.7 8 6"/></svg>
+        </div>
+        <h3>Real support. Real people.</h3>
+        <p>A team of 50+ real resellers with real expertise, and real accountability. Not a faceless admin hiding behind a screen.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="12" y="3" width="7" height="7" rx="1"/><rect x="3" y="12" width="7" height="7" rx="1"/><rect x="12" y="12" width="7" height="7" rx="1"/></svg>
+        </div>
+        <h3>More ways to win</h3>
+        <p>From eBay and Amazon to sneakers, Pok&eacute;mon, tickets, and more. Members have multiple categories to choose from.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Built on trust</h3>
+        <p>No fake screenshots. No inflated promises. No disappearing after you pay. Divine has operated transparently since 2019 because the results speak for themselves.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIDE DIVINE -->
+<section class="section section-alt" id="inside">
+  <div class="section-inner fade-in">
+    <div class="text-center">
+      <div class="section-headline">What's inside</div>
+      <p class="section-sub centered">One membership. Three communities. All included.</p>
+    </div>
+    <div class="tabs-row">
+      <button class="tab-btn active" data-tab-id="main">Main Discord</button>
+      <button class="tab-btn" data-tab-id="sneaker">Sneaker Discord</button>
+      <button class="tab-btn" data-tab-id="finance">Trading & Sports Betting</button>
+    </div>
+    <div class="tab-content" id="tab-main">
+      <div class="tab-preview">[ SCREENSHOT PLACEHOLDER ]</div>
+      <div class="tab-info">
+        <h3>Divine Discord</h3>
+        <p>The command center. Profitable opportunities across every category flow through here.</p>
+        <ul>
+          <li>Products you can buy and resell for a profit &mdash; posted here before anywhere else</li>
+          <li>Separate sections for every category &mdash; eBay, Amazon, sneakers, Pok&eacute;mon, tickets, and more</li>
+          <li>50+ staff actively helping members daily</li>
+          <li>A community of winners sharing real results</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tab-content" id="tab-sneaker" style="display:none">
+      <div class="tab-preview">[ SCREENSHOT PLACEHOLDER ]</div>
+      <div class="tab-info">
+        <h3>Sneaker Discord</h3>
+        <p>A dedicated server for members who want to win on sneaker releases, restocks, and resale.</p>
+        <ul>
+          <li>Know which releases are worth going for before drop day</li>
+          <li>See how much each sneaker can sell for before you buy it</li>
+          <li>Free auto-checkout bots included with your membership</li>
+          <li>A sneaker-focused community that actually helps</li>
+        </ul>
+        <p style="margin-top:16px;font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--accent);">Included FREE with your membership.</p>
+      </div>
+    </div>
+    <div class="tab-content" id="tab-finance" style="display:none">
+      <div class="tab-preview">[ SCREENSHOT PLACEHOLDER ]</div>
+      <div class="tab-info">
+        <h3>Trading & Sports Betting</h3>
+        <p>Extra lanes to make money beyond reselling. Included free with every Divine membership.</p>
+        <ul>
+          <li>Stock and crypto alerts from experienced traders</li>
+          <li>Sports betting insights and picks</li>
+          <li>Multiple ways to profit from one membership</li>
+          <li>No extra cost. No upsell. Just included.</li>
+        </ul>
+        <p style="margin-top:16px;font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--accent);">Included FREE with your membership.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILT FOR BOTH -->
+<section class="section section-dark">
+  <div class="section-inner fade-in">
+    <div class="text-center">
+      <div class="section-headline-lg">Built for beginners.<br><span class="accent-em">Trusted by advanced sellers.</span></div>
+      <p class="section-sub centered">Whether you're flipping your first item or scaling a full operation, Divine meets you where you are.</p>
+    </div>
+    <div class="split-grid">
+      <div class="split-card">
+        <h3>If you're new to reselling</h3>
+        <ul>
+          <li>Learn where to start and what to sell first</li>
+          <li>Pick a category without wasting money on trial and error</li>
+          <li>Get real answers from 50+ staff, not a chatbot</li>
+          <li>Skip groups that overpromise and underdeliver</li>
+          <li>Make your first profitable sale faster</li>
+        </ul>
+      </div>
+      <div class="split-card">
+        <h3>If you already sell</h3>
+        <ul>
+          <li>Get opportunities before they hit other groups</li>
+          <li>Expand into other niches</li>
+          <li>Access a support team that matches your speed</li>
+          <li>Grow faster with real information, not guesswork</li>
+          <li>Replace every group that isn't pulling its weight</li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-center" style="margin-top:40px">
+      <a href="#" class="btn-primary" style="font-size:16px;padding:14px 32px;">Join Free</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section section-alt" id="how">
+  <div class="section-inner fade-in">
+    <div class="text-center">
+      <div class="section-headline">How it works</div>
+      <p class="section-sub centered">Three steps. No experience needed. No commitment until you're ready.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Join free for 5 days</h3>
+        <p>Get instant access to everything. Explore the community, the alerts, and the support before you pay a cent.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Pick your lane</h3>
+        <p>Sneakers, Pok&eacute;mon, eBay, Amazon, tickets, trading &mdash; choose a category and start with the opportunities that match your goals.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Start winning</h3>
+        <p>Follow the alerts, use the support, and start building toward your first wins. Members often see value within their first week.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- COMPARISON -->
+<section class="section">
+  <div class="section-inner fade-in">
+    <div class="text-center">
+      <div class="section-headline">Why serious resellers choose Divine over everyone else</div>
+    </div>
+    <div class="comparison-table">
+      <div class="comp-header">
+        <div></div>
+        <div>Divine</div>
+        <div>Other Groups</div>
+      </div>
+      <div class="comp-row">
+        <div>Proven scale</div>
+        <div><span class="check">&#10003;</span> 100,000+ resellers served</div>
+        <div><span class="x-mark">&mdash;</span> Limited or nonexistent</div>
+      </div>
+      <div class="comp-row">
+        <div>Proof</div>
+        <div><span class="check">&#10003;</span> 4,500+ reviews, 250K+ wins</div>
+        <div><span class="x-mark">&mdash;</span> A fraction of Divine's</div>
+      </div>
+      <div class="comp-row">
+        <div>Speed of information</div>
+        <div><span class="check">&#10003;</span> Recognized as the source</div>
+        <div><span class="x-mark">&mdash;</span> Reposting what Divine already found</div>
+      </div>
+      <div class="comp-row">
+        <div>Free trial</div>
+        <div><span class="check">&#10003;</span> 5-day free trial</div>
+        <div><span class="x-mark">&mdash;</span> Pay upfront (more risk)</div>
+      </div>
+      <div class="comp-row">
+        <div>Trust & reputation</div>
+        <div><span class="check">&#10003;</span> #1-rated on Whop</div>
+        <div><span class="x-mark">&mdash;</span> Not ranked. Not verified.</div>
+      </div>
+      </div>
+    </div>
+    <div class="text-center" style="margin-top:48px">
+      <a href="#" class="btn-primary" style="font-size:16px;padding:14px 32px;">
+        Join Free
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5-5-5-5"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL MARQUEE -->
+<div class="testimonial-marquee-section fade-in">
+  <div class="marquee-track">
+    <div class="marquee-card">
+      <div class="marquee-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"Thanks to Divine, I've already surpassed my weekly paychecks from my 9-5 job through reselling - while only doing it part-time and balancing life with a wife and kids. This community has truly been life-changing."</blockquote>
+      <div class="marquee-author">&mdash; Sergio M.</div>
+    </div>
+    <div class="marquee-card">
+      <div class="marquee-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"Just here to say thanks. Been here a year. Thanks to everyone and the staff and everyone else who posts deals and what deals they got. It all helps. $83K profit in my first year of reselling. Only up from here."</blockquote>
+      <div class="marquee-author">&mdash; Stephen W.</div>
+    </div>
+    <div class="marquee-card">
+      <div class="marquee-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"So glad I paid and joined this discord. Have made thousands of dollars per month. I'm almost 40, and ever since I joined, I've been able to use the money from here for life and I've been able to increase my 401k contributions. I just hit 235k in my Roth account."</blockquote>
+      <div class="marquee-author">&mdash; Caleb L.</div>
+    </div>
+    <div class="marquee-card">
+      <div class="marquee-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"Before I joined, I could not get in the green for reselling to save my life. I had thousands and thousands in the red. Within my first few months, not only did I go green &mdash; I went green for the entire year. I'm not worried anymore about paying off my debt or paying my bills. From the bottom of my heart, THANK YOU!"</blockquote>
+      <div class="marquee-author">&mdash; Lindsey W.</div>
+    </div>
+    <div class="marquee-card">
+      <div class="marquee-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"As broke college student who joined one year ago. I can now comfortably buy the things I want and I just recently booked a trip to Japan with my homies who also are in divine. Divine funded all of us and is still helping us till this day. Thank you divine!"</blockquote>
+      <div class="marquee-author">&mdash; Adam S.</div>
+    </div>
+    <div class="marquee-card">
+      <div class="marquee-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"I have a good job but the additional income this group generates for me changed everything. One of the biggest things I was able to achieve is pay for IVF to have our daughter. It was still thousands and thousands of dollars and I don't think it would have been possible without this group. You guys literally changed my life."</blockquote>
+      <div class="marquee-author">&mdash; Jarrid B.</div>
+    </div>
+    <!-- Duplicate for seamless loop -->
+    <div class="marquee-card">
+      <div class="marquee-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"Thanks to Divine, I've already surpassed my weekly paychecks from my 9-5 job through reselling - while only doing it part-time and balancing life with a wife and kids. This community has truly been life-changing."</blockquote>
+      <div class="marquee-author">&mdash; Sergio M.</div>
+    </div>
+    <div class="marquee-card">
+      <div class="marquee-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"Just here to say thanks. Been here a year. Thanks to everyone and the staff and everyone else who posts deals and what deals they got. It all helps. $83K profit in my first year of reselling. Only up from here."</blockquote>
+      <div class="marquee-author">&mdash; Stephen W.</div>
+    </div>
+    <div class="marquee-card">
+      <div class="marquee-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"So glad I paid and joined this discord. Have made thousands of dollars per month. I'm almost 40, and ever since I joined, I've been able to use the money from here for life and I've been able to increase my 401k contributions. I just hit 235k in my Roth account."</blockquote>
+      <div class="marquee-author">&mdash; Caleb L.</div>
+    </div>
+    <div class="marquee-card">
+      <div class="marquee-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"Before I joined, I could not get in the green for reselling to save my life. I had thousands and thousands in the red. Within my first few months, not only did I go green &mdash; I went green for the entire year. I'm not worried anymore about paying off my debt or paying my bills. From the bottom of my heart, THANK YOU!"</blockquote>
+      <div class="marquee-author">&mdash; Lindsey W.</div>
+    </div>
+    <div class="marquee-card">
+      <div class="marquee-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"As broke college student who joined one year ago. I can now comfortably buy the things I want and I just recently booked a trip to Japan with my homies who also are in divine. Divine funded all of us and is still helping us till this day. Thank you divine!"</blockquote>
+      <div class="marquee-author">&mdash; Adam S.</div>
+    </div>
+    <div class="marquee-card">
+      <div class="marquee-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"I have a good job but the additional income this group generates for me changed everything. One of the biggest things I was able to achieve is pay for IVF to have our daughter. It was still thousands and thousands of dollars and I don't think it would have been possible without this group. You guys literally changed my life."</blockquote>
+      <div class="marquee-author">&mdash; Jarrid B.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-inner fade-in">
+    <div class="text-center">
+      <div class="section-headline">Still have questions?</div>
+      <p class="section-sub centered">We hear these a lot.</p>
+    </div>
+    <div class="accordion">
+      <div class="accordion-item">
+        <button class="accordion-trigger">"How do I know this isn't just another scammy group?" <span class="icon">+</span></button>
+        <div class="accordion-body"><div class="accordion-body-inner">Most reselling groups are started by people who were in Divine first. The difference is they copied the model without the team, the track record, or the results. Divine has been operating since 2019, is publicly rated #1 on Whop with 4,500+ verified reviews, and has served over 100,000 members. The proof isn't behind a paywall &mdash; it's public. If another group can show you the same, join them. They can't.</div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">"I already have a group. Why would I join Divine too?" <span class="icon">+</span></button>
+        <div class="accordion-body"><div class="accordion-body-inner">Ask yourself: does your current group post first, or repost? Do they have a real support team, or one admin? Can you find thousands of verified reviews, or just a few screenshots? Most members who join Divine from another group say the same thing &mdash; they wish they'd switched sooner.</div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">"Will this actually be worth $74.99/month?" <span class="icon">+</span></button>
+        <div class="accordion-body"><div class="accordion-body-inner">That's exactly why the 5-day free trial matters. You can see what's inside, explore the categories, and decide whether the value is there before committing.</div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">"I'm new. What if I don't know where to start?" <span class="icon">+</span></button>
+        <div class="accordion-body"><div class="accordion-body-inner">That's exactly what our 50+ person Member Success Team is here for. When you join Divine, you'll get a welcome message from one of them. Just tell them what you're looking to do and they'll help guide you from there &mdash; no experience needed.</div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">Do I need a lot of money to start reselling? <span class="icon">+</span></button>
+        <div class="accordion-body"><div class="accordion-body-inner">No. Many members start with $50&ndash;100 and reinvest their profits. Divine covers categories at every price point &mdash; from $10 flips to higher-margin opportunities. You don't need a big bankroll to get started.</div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">How much time do I need to put in? <span class="icon">+</span></button>
+        <div class="accordion-body"><div class="accordion-body-inner">That's entirely up to you. Some members spend 30 minutes a day checking alerts and acting on what fits. Others go full-time. Divine works around your schedule &mdash; the opportunities are posted whether you're ready at 7am or 11pm. There's no minimum commitment and no pressure to be active every day.</div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">What is included with the Divine membership? <span class="icon">+</span></button>
+        <div class="accordion-body"><div class="accordion-body-inner">Access to the Divine Discord, Sneaker Discord, and Trading & Sports Betting Discord, along with alerts, auto-checkout support, staff help, and community resources.</div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">How does the free trial work? <span class="icon">+</span></button>
+        <div class="accordion-body"><div class="accordion-body-inner">You get instant access to everything as soon as you sign up. Explore Divine for 5 days and see whether it fits what you need. After that, membership continues at $74.99/month. You can cancel anytime through your Whop account settings &mdash; no hoops, no hassle.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM PROOF - "Never ending scroll" -->
+<section class="bottom-proof">
+  <div class="bottom-proof-inner fade-in">
+    <div class="text-center">
+      <div class="section-headline">The wins don't stop.</div>
+      <p class="section-sub centered">Straight from the Divine Discord. Every day looks like this.</p>
+    </div>
+    <div class="bottom-proof-grid">
+      <div class="discord-screenshot-card">
+        <div class="discord-header">
+          <div class="discord-avatar">S</div>
+          <div>
+            <div class="discord-name">StockinUp</div>
+            <div class="discord-channel">#profits</div>
+          </div>
+        </div>
+        <div class="discord-msg">Long Story Short our house was in foreclosure and going to be sold on this coming Tuesday. We were able to pay off the past due balance and it's because of Divine & our hard work. Forever grateful.</div>
+        <div class="discord-reactions">
+          <span class="discord-reaction">&#128293; 17</span>
+          <span class="discord-reaction">&#9989; 13</span>
+        </div>
+      </div>
+      <div class="discord-screenshot-card">
+        <div class="discord-header">
+          <div class="discord-avatar">C</div>
+          <div>
+            <div class="discord-name">carolgggggg</div>
+            <div class="discord-channel">#profits</div>
+          </div>
+        </div>
+        <div class="discord-msg">I'm down to my last CC and I completely finished paying off my entire debt yesterday. I'm super proud and thankful because I couldn't have done it without Divine! Started w/Divine on Nov 22 and have worked so hard to be debt free since.</div>
+        <div class="discord-reactions">
+          <span class="discord-reaction">&#128293; 35</span>
+          <span class="discord-reaction">&#127881; 25</span>
+          <span class="discord-reaction">&#128156; 14</span>
+        </div>
+      </div>
+      <div class="discord-screenshot-card">
+        <div class="discord-header">
+          <div class="discord-avatar">M</div>
+          <div>
+            <div class="discord-name">Mastan</div>
+            <div class="discord-channel">#profits</div>
+          </div>
+        </div>
+        <div class="discord-msg">Divine has changed my life, quit my full time engineering job in June and haven't looked back since. Incredible numbers for us on our first Q4 being full time. Almost everyone in Divine has helped us at some point, from not even knowing how to ship anything 2 years ago to where we are today.</div>
+        <div class="discord-reactions">
+          <span class="discord-reaction">&#128293; 24</span>
+          <span class="discord-reaction">&#9989; 18</span>
+        </div>
+      </div>
+      <div class="discord-screenshot-card">
+        <div class="discord-header">
+          <div class="discord-avatar">V</div>
+          <div>
+            <div class="discord-name">voidzey</div>
+            <div class="discord-channel">#profits</div>
+          </div>
+        </div>
+        <div class="discord-msg">9 months later I'd cross $100K in gross sales. Honestly, I've probably learned more in this server over the past 9 months than I did in 15 years of school. The momentum is real right now.</div>
+        <div class="discord-reactions">
+          <span class="discord-reaction">&#128293; 12</span>
+          <span class="discord-reaction">&#128200; 8</span>
+        </div>
+      </div>
+      <div class="discord-screenshot-card">
+        <div class="discord-header">
+          <div class="discord-avatar">S</div>
+          <div>
+            <div class="discord-name">Slim</div>
+            <div class="discord-channel">#general</div>
+          </div>
+        </div>
+        <div class="discord-msg">Let me just say, this is my 4th year going on into my 5th year being a part of the Divine Family and it's been the greatest and most important tool for me by far as a part-time reseller. Can't see myself ever quitting or leaving the server.</div>
+        <div class="discord-reactions">
+          <span class="discord-reaction">&#128156; 22</span>
+          <span class="discord-reaction">&#128293; 15</span>
+        </div>
+      </div>
+      <div class="discord-screenshot-card">
+        <div class="discord-header">
+          <div class="discord-avatar">R</div>
+          <div>
+            <div class="discord-name">Ralph S</div>
+            <div class="discord-channel">#general</div>
+          </div>
+        </div>
+        <div class="discord-msg">Since I joined divine my mind been blown away everytime I open the app. It blows my mind how many deals everyday people pass up without even knowing about it. Love it and can't see myself without it.</div>
+        <div class="discord-reactions">
+          <span class="discord-reaction">&#128293; 10</span>
+          <span class="discord-reaction">&#9989; 8</span>
+        </div>
+      </div>
+    </div>
+    <div class="text-center" style="margin-top:48px">
+      <a href="#" class="btn-primary" style="font-size:16px;padding:14px 32px;">
+        Join Free
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5-5-5-5"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="section-inner fade-in">
+    <div class="section-headline-lg">If you're going to resell, do it where<br><span class="accent-em">people actually win.</span></div>
+    <p class="section-sub centered" style="margin-top:16px">Start your free 5-day trial and see why more resellers trust Divine than every other community combined.</p>
+    <a href="#" class="btn-primary" style="margin-top:36px">
+      Join Free
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5-5-5-5"/></svg>
+    </a>
+    <p style="text-align:center;font-size:13px;color:var(--text-on-bold-muted);margin-top:14px;margin-bottom:0;">5 days free. Cancel anytime.</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:32px;line-height:1;">
+      <span style="display:inline-flex;align-items:center;color:#fbbf24;font-size:16px;letter-spacing:2px;line-height:1;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span style="display:inline-flex;align-items:center;font-family:var(--font-display);font-size:14px;font-weight:700;color:rgba(255,255,255,0.78);letter-spacing:0.05em;text-transform:uppercase;line-height:1;">4,500+ Reviews on</span>
+      <span style="display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:26px;background:#E8503A;color:#fff;font-family:var(--font-display);font-size:13px;font-weight:700;padding:0 12px;border-radius:20px;letter-spacing:0.03em;line-height:1;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAASCAYAAABfJS4tAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAAC4UlEQVR4nNVUSWgUQRR9v6q6p8eZ0cRIgluiuBEjioK7Mu4eRAiYNuDBgzeDxlxERGUcL3oTBMGDigcVSVBEQXCNIh5jDkJwQSELKrjEZCYzPd1d9T1kokGNQfCg7/rrv3qf/94H/jswQK1JKE5BMEDsQnIKYqieAgQPryehGKCherMLyS4kA8QpCHYhR/90lEfDBfwIak1WlVTZpr5EmloBKvWBl289dXpBpuwptbUFt9bOnLEw4u92WC8FQWaNut8d2meWr371jtIwT9dXbqi0zE7JZhYTZT4H1qWOL4UWNdWms9PjtA0+A2yAiFhqIXDXcLz0+boZW6ZE8hdiFsZBM8CMkrhZzn1eNaVR17N52smJKmgSAoABQIxSx2wcEE5cvWfdmMhRWG6JepBB1sPrFwVr28VI575JVngCxiBf4EAAHIkouzdrLrd7scMfN1XdKLPDrX5gdBiytogUCyHe5vjgZ9+c+7aEns2VJ2OSFz/uS+xYEs8eqIjoBt83OmTAEpCWknjn48i9vrFXasdlriZsM98LdMggRCWpAUPZzlDuqrnb1YJB8YMbJoCBlOrZdP725Biv8/KhxyAVlaQ8Q7pTU12/7/TWRL2bY6RJ5EMTEgiORepLIF51BLJ+5f3Odk5C0SOEggCmogPYTXOfpuP9OX7jKOFEFamsoe4nGXuRzXbF4njhoQOdyAWsBRM5llAfCnT7WtZZOZy0KPQ7UoBIA+b6ijmTVsWz16Ugc+mTrK0rwaGKqN7j+6HWTKwI0lKCun06VXmnpwkAN7uQ21ugv9ntV96lFmh32ZToXBqfaIj33iyP8ZJCPvQZpBxFIqehu0K5p/pe9xlOQRxNA+lBX2BE4iHlxwDzzJ1rJ3oz+8uUaYwKLjcABpg6nnty77LWrgfF0TUA/ikgIyWHAaJiw43k7Ak1Tr46z1yY96miHW1twdBkI/WPil/F+ndR/jPy4nFqLh6bv0L6z+Er+rtU0caq4SwAAAAASUVORK5CYII=" alt="Whop" style="display:block;height:13px;width:auto;filter:brightness(10);"> Whop</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner footer-centered fade-in">
+    <div class="footer-brand">
+      <div class="footer-logo"><svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="dg2" x1="0%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#9333ea"/><stop offset="55%" stop-color="#c084fc"/><stop offset="100%" stop-color="#c4b5fd"/></linearGradient></defs><path d="M22 8 L55 8 C78 8 92 24 92 44 L92 56 C92 84 70 97 44 97 L22 97 C14 97 8 91 8 83 L8 22 C8 14 14 8 22 8 Z M34 28 L34 77 L44 77 C60 77 72 66 72 52 L72 44 C72 34 64 28 55 28 Z" fill="url(#dg2)"/></svg>divine</div>
+      The #1 community for resellers to win bigger.
+    </div>
+    <div class="footer-links">
+      <a href="#">Why Divine</a>
+      <a href="#">What's Inside</a>
+      <a href="#">Testimonials</a>
+      <a href="#">FAQ</a>
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+      <a href="#">Support</a>
+    </div>
+    <div class="footer-socials">
+      <a href="#" aria-label="X (Twitter)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="#" aria-label="TikTok">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V9.17a8.16 8.16 0 004.76 1.52v-3.4a4.85 4.85 0 01-1-.6z"/></svg>
+      </a>
+      <a href="#" aria-label="YouTube">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    </div>
+    <div class="footer-copy">
+      &copy; 2026 Divine. All rights reserved. Divine is a product of Its Gutta Go LLC.
+    </div>
+    <div class="footer-disclaimer">
+      <strong>Earnings Disclaimer:</strong> The testimonials, statements, and results shown on this page are from real Divine members. However, these results are not typical and should not be interpreted as a guarantee or promise of similar outcomes. Individual results will vary based on effort, experience, product knowledge, market conditions, and many other factors. Divine provides tools, information, and community support for resellers &mdash; but does not guarantee any specific income, profit, or financial result. Reselling involves risk, including the potential for financial loss. You should not rely on the results of others as an indication of what you will achieve. By using Divine, you acknowledge that your results depend on your own actions and decisions.
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile menu
+const siteHeader = document.querySelector('.header');
+const mobileMenuButton = document.querySelector('.mobile-menu');
+const mobileNavPanel = document.getElementById('mobile-nav');
+
+function setMobileMenu(open) {
+  if (!siteHeader || !mobileMenuButton) return;
+  siteHeader.classList.toggle('menu-open', open);
+  mobileMenuButton.setAttribute('aria-expanded', String(open));
+  mobileMenuButton.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+}
+
+mobileMenuButton?.addEventListener('click', () => {
+  setMobileMenu(!siteHeader.classList.contains('menu-open'));
+});
+
+mobileNavPanel?.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => setMobileMenu(false));
+});
+
+document.addEventListener('click', event => {
+  if (!siteHeader?.classList.contains('menu-open')) return;
+  if (siteHeader.contains(event.target)) return;
+  setMobileMenu(false);
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') setMobileMenu(false);
+});
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) setMobileMenu(false);
+});
+
+// Rotating headline words
+const cmsContent = (() => {
+  try {
+    return JSON.parse(localStorage.getItem('divine.cms.content.v2'));
+  } catch {
+    return null;
+  }
+})();
+const visualContent = (() => {
+  try {
+    return JSON.parse(localStorage.getItem('divine.visual.page.v1'));
+  } catch {
+    return null;
+  }
+})();
+const visualWords = Array.isArray(visualContent?.rotatingWords)
+  ? visualContent.rotatingWords.map(word => String(word).trim()).filter(Boolean)
+  : [];
+const words = visualWords.length
+  ? visualWords
+  : cmsContent?.hero?.rotatingWords?.filter(Boolean)?.length
+  ? cmsContent.hero.rotatingWords.filter(Boolean)
+  : ['eBay', 'Amazon', 'Facebook', 'StockX', 'Pokemon', 'Sneaker', 'Ticket', 'Collectible'];
+let wordIndex = 0;
+const wordEl = document.getElementById('rotating-word');
+if (wordEl && words[0]) wordEl.textContent = words[0];
+const wrapEl = wordEl?.parentElement;
+
+function updateWrapWidth() {
+  if (!wordEl || !wrapEl) return;
+  // Temporarily measure the current word width
+  wrapEl.style.width = wordEl.offsetWidth + 'px';
+  wrapEl.style.transition = 'width 0.27s cubic-bezier(0.65, 0, 0.35, 1)';
+}
+updateWrapWidth();
+
+function rotateWord() {
+  if (!wordEl || !wrapEl || !words.length) return;
+  // Slide current word out (up)
+  wordEl.classList.add('slide-out');
+  
+  setTimeout(() => {
+    // Change text while hidden
+    wordIndex = (wordIndex + 1) % words.length;
+    wordEl.textContent = words[wordIndex];
+    
+    // Position below
+    wordEl.classList.remove('slide-out');
+    wordEl.classList.add('slide-in-prepare');
+    
+    // Update wrap width for new word
+    wrapEl.style.width = wordEl.offsetWidth + 'px';
+    
+    // Force reflow then slide in
+    wordEl.offsetHeight;
+    wordEl.classList.remove('slide-in-prepare');
+    wordEl.classList.add('slide-in');
+    
+    setTimeout(() => {
+      wordEl.classList.remove('slide-in');
+    }, 300);
+  }, 270);
+}
+
+const rotationIntervalId = wordEl && wrapEl && words.length ? setInterval(rotateWord, 1440) : null;
+window.__divineRotation = {
+  intervalId: rotationIntervalId,
+  words,
+};
+
+// Tab switching
+function switchTab(btn, tabId) {
+  const tabContent = document.getElementById('tab-' + tabId);
+  if (!btn || !tabContent) return;
+  if (btn.classList.contains('active') && tabContent.style.display !== 'none') return;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.tab-content').forEach(t => {
+    t.querySelector('.tab-info')?.classList.remove('tab-text-enter');
+    t.style.display = 'none';
+  });
+  tabContent.style.display = 'grid';
+  const tabInfo = tabContent.querySelector('.tab-info');
+  if (tabInfo) {
+    tabInfo.offsetHeight;
+    tabInfo.classList.add('tab-text-enter');
+  }
+}
+
+// Accordion
+function toggleAccordion(trigger) {
+  const item = trigger.parentElement;
+  if (!item?.parentElement) return;
+  const wasOpen = item.classList.contains('open');
+  // Close siblings in same accordion
+  item.parentElement.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+document.addEventListener('click', event => {
+  const tabButton = event.target.closest('.tab-btn[data-tab-id]');
+  if (tabButton) {
+    switchTab(tabButton, tabButton.dataset.tabId);
+    return;
+  }
+
+  const accordionTrigger = event.target.closest('.accordion-trigger');
+  if (accordionTrigger) toggleAccordion(accordionTrigger);
+});
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Make hero visible immediately
+document.querySelectorAll('.hero .fade-in').forEach(el => {
+  setTimeout(() => el.classList.add('visible'), 100);
+});
+</script>
+
+<script type="module" src="/src/main.jsx"></script>
+</body>
+</html>

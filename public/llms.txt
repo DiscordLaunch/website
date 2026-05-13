@@ -1,0 +1,20 @@
+# Divine
+
+> Divine is a reseller community that helps members find what to buy, where to buy it, and how to resell it for a profit.
+
+## Public Pages
+
+- [Home](/): Public landing page for Divine, including community proof, membership details, FAQs, and calls to start a free trial.
+
+## Key Information
+
+- Divine serves resellers across categories including eBay, Amazon, sneakers, Pokemon, tickets, and more.
+- Membership includes access to the Divine Discord, Sneaker Discord, and Trading & Sports Betting Discord.
+- The page includes testimonials and results from Divine members. Individual results vary and are not guaranteed.
+- The public page is separate from the private visual editor at `/editor`.
+
+## Not For Indexing
+
+- `/editor`: Private visual editor route.
+- `/cms`: Removed/unsupported legacy CMS route.
+

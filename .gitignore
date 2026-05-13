@@ -1,0 +1,53 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies
+node_modules
+
+# Build output
+dist
+dist-ssr
+output
+.vite
+*.tsbuildinfo
+
+# Testing
+coverage
+.nyc_output
+test-results
+playwright-report
+blob-report
+playwright/.cache
+
+# Generated reports and local notes
+*_report.md
+*-report.md
+audit*.md
+notes.local.md
+
+# Local environment files
+.env
+.env.*
+!.env.example
+*.local
+
+# Deployment metadata
+.vercel
+.netlify
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
